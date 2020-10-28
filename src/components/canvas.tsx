@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Layer, Rect, Stage, Group } from 'react-konva';
-import Slider, { Range } from 'rc-slider';
+import { Layer, Stage } from 'react-konva';
+import Slider from 'rc-slider';
 import { Polygon } from '@react-google-maps/api';
 import 'rc-slider/assets/index.css';
 import GaspData from '../types/GaspData';
@@ -1327,9 +1327,6 @@ const Canvas = (props: CanvasProps) => {
   const height = window.innerHeight * 0.8;
   const width = window.innerWidth * 0.8;
 
-  const cellHeight = height / 10;
-  const cellWidth = width / 10;
-
   const polygons = [];
 
   console.log('props.field', props.field);
@@ -1386,22 +1383,11 @@ const Canvas = (props: CanvasProps) => {
 
   const sliderMarks: any = {};
   for (let i = 0, j = 1; j < props.data.timestamps.length; i += increment, j++) {
-    const date = new Date(props.data.timestamps[j]);
     sliderMarks[i] = '';
   }
 
   const onSliderChange = (event: any) => {
     setSliderValue(event);
-    const indexCeil = Math.ceil(event / increment);
-    const indexFloor = Math.floor(event / increment);
-
-    const d = event / increment;
-    let index = 0;
-    if (indexCeil - d < d - indexFloor) {
-      index = indexCeil;
-    } else {
-      index = indexFloor;
-    }
 
     setSelectedSliderDate(new Date(props!.data!.timestamps[event / increment]));
     setTimestampIndex(event / increment);
@@ -1438,7 +1424,7 @@ const Canvas = (props: CanvasProps) => {
         <br />
         <br />
 
-        
+
 
         <GMap
           center={{

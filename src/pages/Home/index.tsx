@@ -33,7 +33,7 @@ const Home = () => {
   const fetcher = async (key: string, date: Date, field: string) => getDataForDate(date, field);
   const fetcherRange = async () => getRanges();
 
-  const { isLoading: isLoadingData, error: errorData, data, refetch: refetchData } = useQuery(
+  const { isLoading: isLoadingData, error: errorData, data } = useQuery(
     ['repoData', startDate, selectedOption.value],
     fetcher,
     {
@@ -42,7 +42,7 @@ const Home = () => {
     }
   );
 
-  const { isLoading: isLoadingRanges, error: errorRanges, data: dataRanges, refetch: refetchRanges } = useQuery(
+  const { isLoading: isLoadingRanges, error: errorRanges, data: dataRanges } = useQuery(
     ['ranges'],
     fetcherRange,
     {

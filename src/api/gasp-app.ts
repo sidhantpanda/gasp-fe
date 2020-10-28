@@ -1,6 +1,5 @@
 import superagent from 'superagent';
 import GaspData, { GaspDataRange } from '../types/GaspData';
-import { asyncWait, generateRandomData } from '../utils';
 
 const HOST = 'http://vwa.databake.nl';
 
